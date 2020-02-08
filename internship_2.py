@@ -1,34 +1,42 @@
+##Question 2
 
-def check_prime(num):
+LIMIT = 5
+def check_prime(num: int) -> bool:
     for i in range(2, num // 2):
         if (num % i) == 0:
             return False
     else:
         return True
-inp = 5
-while(True):
-    inp = input("Enter a number : ")
-    if(inp == 0.0 or inp =="0.0"):
+
+def addList(lst: list) -> int:
+    return int(lst[0:2]),\
+           int(lst[0:3]),\
+           int(lst[0:4])
+
+def inputValidate(s: str) -> bool:
+    if (s is "0.0"):
         exit()
-    lst= []
-    for i in range (len(inp)):
+    elif (len(s) < LIMIT):
+        exit()
+    return True
+
+
+while(True):
+    inp = input("Enter a decimal number : ")
+
+    inputValidate(inp)
+
+    num = ""
+    for i in range (LIMIT):
         if(inp[i]=='.'):
             pass
         else:
-            lst.append(inp[i])
+            num += inp[i]
 
-    i=0
-    a = int((lst[i]) + (lst[i + 1]))
-    b = int((lst[i]) + (lst[i + 1])+(lst[i+2]))
-    c = int((lst[i]) + (lst[i + 1])+(lst[i+2])+(lst[i+3]))
-    if (check_prime(a)==True):
+    two_digit, three_digit, four_digit = addList(num)
+
+    if (check_prime(two_digit) or check_prime(three_digit) or check_prime(four_digit)):
         print("TRUE")
     else:
-        if(check_prime(b)==True):
-            print("TRUE")
-        else:
-            if (check_prime(c) == True):
-                print("TRUE")
-            else:
-                print("FALSE")
+        print("FALSE")
 
